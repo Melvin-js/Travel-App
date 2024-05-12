@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import Image from "next/image";
 
 export default function Home() {
@@ -36,5 +36,3 @@ export default function Home() {
     </main>
   );
 }
-=======
->>>>>>> 0626cfdb3dd8d1823cf633f1e099beee5721b977
