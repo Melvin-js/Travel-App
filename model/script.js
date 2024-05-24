@@ -64,8 +64,11 @@ function fetchLocationData(city) {
 }
 
 function showPosition(position) {
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
+    //var latitude = position.coords.latitude;
+    //var longitude = position.coords.longitude;
+    var latitude = 8.529219;
+    var longitude = 76.941248;
+
    
 
 
