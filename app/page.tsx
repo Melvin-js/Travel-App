@@ -3,7 +3,8 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex flex-col w-full h-full min-h-screen items-center bg-white">
+    <main className="flex flex-col w-full h-
+    full min-h-screen items-center bg-white">
 
         {/*navigation bar*/}
         <nav className="flex items-center w-screen justify-between bg-white my-7 px-[112px] py-2">
