@@ -27,7 +27,7 @@ export default function Home() {
               <p className="text-white text-[18px] font-mono">Let AI be your compass as you conquer</p>
               <p className="text-white text-[18px] font-mono">challenges, explore new horizons abd earn</p>
               <p className="text-white text-[18px] font-mono">exciting rewards!</p>
-              <img className="h-[40px] w-[40px] mt-[20px] hover:scale-125 transition hover:duration-200 " src="./right_white.png" alt="arrow"></img>
+              <a href=""><img className="h-[40px] w-[40px] mt-[20px] hover:scale-125 transition hover:duration-200 " src="./right_white.png" alt="arrow"></img></a>
             </div>
           </div>
 
