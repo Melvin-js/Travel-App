@@ -3,6 +3,8 @@ const path = require('path');
 const csv = require('csv-parser');
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const { exec } = require('child_process');
+
 
 const app = express();
 const port = 3000;
@@ -17,7 +19,8 @@ const initialData = {
     "00": {
       "likedLocations": [],
       "addedLocations": [],
-      "visitedLocations": []
+      "visitedLocations": [],
+      "recommended": []
     }
   };
   
@@ -194,6 +197,81 @@ app.get('/api/user-locations', (req, res) => {
         visitedLocations: data[username].visitedLocations || []
     });
 });
+
+
+// Helper function to read JSON file
+const readJSONFile = (filePath) => {
+    return new Promise((resolve, reject) => {
+        fs.readFile(filePath, 'utf8', (err, data) => {
+            if (err) {
+                console.error('Error reading JSON file:', err);
+                return reject(err);
+            }
+            try {
+                const jsonData = JSON.parse(data);
+                resolve(jsonData);
+            } catch (parseError) {
+                console.error('Error parsing JSON file:', parseError);
+                reject(parseError);
+            }
+        });
+    });
+};
+
+// Route to get recommended locations details
+app.get('/api/recommendations', async (req, res) => {
+    try {
+        const username = req.query.username;
+        if (!username) {
+            return res.status(400).send({ error: 'Username is required' });
+        }
+
+        const userDataPath = dataFilePath;
+        const userData = await readJSONFile(userDataPath);
+
+        if (!userData[username]) {
+            return res.status(404).send({ error: 'User not found' });
+        }
+
+        const recommendedLocations = userData[username]?.recommended || [];
+        if (recommendedLocations.length === 0) {
+            return res.json([]);
+        }
+
+        const results = [];
+        const datasetPath = 'Datasets/dataset.csv';
+
+        fs.createReadStream(datasetPath)
+            .pipe(csv())
+            .on('data', (data) => {
+                if (recommendedLocations.includes(data.Name.toLowerCase())) {
+                    results.push({
+                        Name: data.Name,
+                        Location: data.Location,
+                        Description: data.Description,
+                        Category: data.Category,
+                    });
+                }
+            })
+            .on('end', () => {
+                res.json(results);
+            })
+            .on('error', (error) => {
+                console.error('Error reading CSV file:', error);
+                res.status(500).send({ error: 'An error occurred while reading the CSV file' });
+            });
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send({ error: 'An internal server error occurred' });
+    }
+});
+
+
+
+
+
+
 
 
 

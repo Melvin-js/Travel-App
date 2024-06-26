@@ -1,5 +1,5 @@
 /* Common card styles */
-.location-card, .other-location-card {
+.location-card, .other-location-card, .suggested-location-container {
     padding: 10px 20px 15px 25px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -10,7 +10,7 @@
 }
 
 /* Initial card container */
-#location-container, #other-location-container {
+#location-container, #other-location-container, #suggested-location-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 cards in width */
     gap: 20px; /* Adjust the space between cards */

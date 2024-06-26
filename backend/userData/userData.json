@@ -1,14 +1,17 @@
 {
-  "00": {
-    "likedLocations": [
-      "Ponmudi"
-    ],
-    "addedLocations": [
-      "Thrissur Pooram",
-      "Ponmudi"
-    ],
-    "visitedLocations": [
-      "Ponmudi"
-    ]
-  }
+    "00": {
+        "likedLocations": [
+            "Thrissur Pooram",
+            "Poovar Island",
+            "Priyadarshini Planetarium"
+        ],
+        "addedLocations": [
+            "Thrissur Pooram",
+            "Poovar Island"
+        ],
+        "visitedLocations": [
+            "Poovar Island"
+        ],
+        "recommended": []
+    }
 }

@@ -7,6 +7,43 @@ function getNewUsername() {
 
 const username = '00'; //getNewUsername();
 
+// Function to fetch recommended locations
+function fetchRecommendedLocations() {
+    return fetch(`http://localhost:3000/api/recommendations?username=${username}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        });
+}
+
+
+// Fetch all locations and user-specific locations, then display them
+Promise.all([
+    fetch('http://localhost:3000/api/data').then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    }),
+    fetchUserLocations(),
+    fetchRecommendedLocations()
+])
+.then(([allLocations, userLocations, recommendedLocations]) => {
+    displayLocations(
+        recommendedLocations,
+        userLocations.likedLocations,
+        userLocations.addedLocations,
+        userLocations.visitedLocations,
+        'suggested-location-container'
+    );
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+
+
 // Function to fetch and display user locations
 function fetchUserLocations() {
     return fetch(`http://localhost:3000/api/user-locations?username=${username}`)
