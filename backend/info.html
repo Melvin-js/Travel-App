@@ -89,9 +89,40 @@
 
 <body>
 
+<<<<<<< HEAD
   <div class="container">
     <div class="image-container">
       <img id="locationImage" src="https://via.placeholder.com/800x400" alt="Location Image" class="hero-image">
+=======
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const locationName = urlParams.get('location');
+            const locationDesc = urlParams.get('desc');
+
+
+            if (location) {
+                document.getElementById('locationName').textContent = decodeURIComponent(locationName);
+                document.getElementById('locationDesc').textContent = decodeURIComponent(locationDesc); 
+                
+            } else {
+                document.getElementById('locationName').textContent = 'No location specified';
+                document.getElementById('locationDesc').textContent = 'No location specified';
+            }
+        });
+      
+
+
+    </script>
+    <h1>Info Page</h1>
+    <h2 class="Subtitle0">Recommended Places<span id="SuggestedCity"></span></h2>
+
+    <div id="suggested-location-container">
+        <h1 id="locationName"></h1>
+        <h1 id="locationDesc"></h1>
+        <h1 id="locationRating"></h1>
+        <h1 id="locationReview"></h1>
+        
+>>>>>>> 4b7fb6616175e132f8177f4c934d0efdac024e2b
     </div>
     <div class="info-container">
       <h1 id="locationName">No location specified</h1>

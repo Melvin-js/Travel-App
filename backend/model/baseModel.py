@@ -14,7 +14,7 @@ if not os.path.exists(location_data_path):
 location_df = pd.read_csv(location_data_path)
 
 # Convert all relevant columns to lowercase and strip whitespace
-columns_to_process = ['Name', 'Description', 'Category', 'BestSeason to Visit', 'Timings', 'Reviews', 'Price']
+columns_to_process = ['Name', 'Description', 'Category', 'BestSeason', 'Timings', 'Reviews', 'Price']
 for column in columns_to_process:
     location_df[column] = location_df[column].str.lower().str.strip()
 
