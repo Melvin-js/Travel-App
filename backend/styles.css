@@ -1,43 +1,36 @@
 /* Common card styles */
 .location-card, .other-location-card, .suggested-location-container {
-    padding: 10px 20px 15px 25px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #f5f5f5;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: rgb(238, 238, 238);
     /* Add any additional styling you want for the cards */
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    margin: 10px;
-    width: 300px;
+    margin-bottom: 5px;
+    height:280px;
+    width: 385px;
+
+
 }
 
 /* Initial card container */
 #location-container, #other-location-container, #suggested-location-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 cards in width */
-    gap: 20px; /* Adjust the space between cards */
+    gap: 25px; /* Adjust the space between cards */
     overflow-y: auto; /* Enable vertical scrolling if cards overflow */
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 10px;
+
 }
 
-.search-container {
-    padding-top: 20px;
-    text-align: center; /* Align the search box to the center */
+.main_container {
+    padding: 30px 100px;
+
+
 }
 
-#searchInput {
-    padding: 17px;
-    border-radius: 20px; /* Add rounded corners */
-    border: 1px solid #c1c1c1;
-    width: 600px; /* Adjust width as needed */
-    margin-bottom: 20px;
-    font-size: 15px;
-}
 
 h1 {
     padding-top: 30px;
@@ -48,7 +41,6 @@ h1 {
 
 .Subtitle, .Subtitle0, .Subtitle1{
     font-size: 25px;
-    padding-left: 55px;
     padding-top: 40px;
 }
 
@@ -124,12 +116,15 @@ h1 {
 
 .card-image img {
     width: 100%;
-    height: 175px;
-    display: block;
+    height: 200px;;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 .card-content {
-    padding: 10px 0;
+    padding: 12px 22px;
     display: flex;
     justify-content: space-between;
     vertical-align: middle;
@@ -161,3 +156,161 @@ h1 {
     display: flex;
 }
 
+
+
+
+
+
+
+
+
+
+.header {
+    background-color: transparent;
+    padding: 22px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.header-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-name {
+    font-size: 30px;
+    color: black; /* Pure black color */
+    font-weight: bold; /* Bold font */
+    margin-left: 60px; 
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+    margin-right: 60px; /* Adjust this to move the buttons to the left */
+}
+
+.auth-button {
+    background-color: #080b08;
+    color: white;
+    border: 2px solid #080b08;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s, border-color 0.2s; 
+}
+
+.auth-button:hover {
+    color: #080b08;
+    background-color: #ffffff;
+    border: 2px solid #080b08; 
+}
+
+/* Banner Image */
+.banner-container {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 0 34px;
+    
+}
+
+.banner-image {
+    width: 90%; /* Increased the width */
+    max-width: 1500px; /* Optional: limit max width */
+    height: 500px; /* Adjusted height */
+    background-image:url('images/image.png');
+    background-size: cover; 
+    background-position: center;
+    object-fit:fill;
+    background-repeat: no-repeat;
+    display:block;
+    -webkit-filter: brightness(20%);
+    filter:brightness(95%);
+    
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.banner-content {
+    position: absolute;
+    top: 47%; /* Reduced the height space */
+    left: 33%;
+    font-family: 'Poppins', Arial, sans-serif;
+    transform: translate(-50%, -50%);
+    text-align: left;
+}
+
+.banner-text-small {
+    color: white;
+    font-size: 18px;
+    font-family: 'Poppins', Arial, sans-serif; 
+    margin-top: 5px; /* Adjust this to control spacing */
+    margin-bottom: 5px; /* Adjust this to control spacing */
+}
+
+.banner-text-large {
+    color: white;
+    font-size: 90px; /* Increased font size */
+    font-family: 'Poppins', Arial, sans-serif;  /* Change font to Poppins */
+    font-weight: 700;
+    margin-top: 0; /* Reduce space at the top */
+    margin-bottom: 10px; /* Reduce space at the bottom */
+}
+
+
+.itbtn {
+    width:300px;
+    padding: 15px 20px;
+    background-color: #080b08;
+    color: white;
+    border: 2px solid #080b08;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s, border-color 0.2s; 
+}
+
+.itbtn:hover {
+    background-color: #00a6ff;
+    color: #080b08;
+    background-color: #ffffff;
+    border: 2px solid #080b08; 
+}
+
+
+
+.search-container {
+    padding: 5px;
+    text-align: center; /* Align the search box to the center */
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: 7px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    padding: 20px;
+    gap: 10px;
+    width: 900px;
+    box-shadow: 2px 6px 80px  #000000a2;
+    
+}
+
+#searchInput {
+    padding: 17px;
+    border-radius: 5px; /* Add rounded corners */
+    border: 1px solid #a4a4a4;
+    width: 90%; /* Adjust width as needed */
+    font-size: 15px;
+}

@@ -23,7 +23,7 @@ function fetchRecommendedLocations() {
 
 // Fetch all locations and user-specific locations, then display them
 Promise.all([
-    fetch('http://localhost:4000/api/data').then(response => {
+    fetch('http://localhost:3000/api/data').then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -50,7 +50,7 @@ Promise.all([
 
 // Function to fetch and display user locations
 function fetchUserLocations() {
-    return fetch(`http://localhost:4000/api/user-locations?username=${username}`)
+    return fetch(`http://localhost:3000/api/user-locations?username=${username}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -65,7 +65,7 @@ function fetchUserLocations() {
 
 // Fetch all locations and user-specific locations, then display them
 Promise.all([
-    fetch('http://localhost:4000/api/data').then(response => {
+    fetch('http://localhost:3000/api/data').then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -83,7 +83,7 @@ Promise.all([
 
 function fetchLocationsByCity(city) {
     Promise.all([
-        fetch(`http://localhost:4000/api/locations-by-city?city=${city}`).then(response => {
+        fetch(`http://localhost:3000/api/locations-by-city?city=${city}`).then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -206,7 +206,7 @@ document.getElementById('searchInput').addEventListener('input', function(event)
 });
 
 function fetchAllLocations() {
-    fetch('http://localhost:4000/api/data')
+    fetch('http://localhost:3000/api/data')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -270,7 +270,7 @@ function filterLocations(locations, query) {
 }
 
 function likeLocation(location, button) {
-    fetch('http://localhost:4000/api/like', {
+    fetch('http://localhost:3000/api/like', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -292,7 +292,7 @@ function likeLocation(location, button) {
 
 
 function addLocation(location, button) {
-    fetch('http://localhost:4000/api/like', {
+    fetch('http://localhost:3000/api/like', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -313,7 +313,7 @@ function addLocation(location, button) {
 }
 
 function visitLocation(location, button) {
-    fetch('http://localhost:4000/api/like', {
+    fetch('http://localhost:3000/api/like', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
