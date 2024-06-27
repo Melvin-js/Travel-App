@@ -10,9 +10,9 @@ export default function Home() {
         <nav className="flex items-center w-screen justify-between bg-white my-7 px-[112px] py-2">
           <div className=" text-black font-medium text-[30px]">Travel App</div>
           <div className="flex gap-5 items-center justify-center">
-            <div className="flex text-black text-lg font-mono hover:bg-black hover:text-white rounded-xl px-5 py-1 ">Log in</div>
+            <div><a href="/pages/login" className="flex text-black text-lg font-mono hover:bg-black hover:text-white rounded-xl px-5 py-1 ">Log in</a></div>
             <div className="flex-auto rounded-xl bg-black px-5 py-2 hover:scale-125 transition hover:duration-200">
-            <div><a href="/signup" className="text-sm text-white" >Sign Up</a></div>
+            <div><a href="/pages/signup" className="text-sm text-white" >Sign Up</a></div>
             </div>
           </div>
         </nav>
@@ -28,7 +28,7 @@ export default function Home() {
               <p className="text-white text-[18px] font-mono">Let AI be your compass as you conquer</p>
               <p className="text-white text-[18px] font-mono">challenges, explore new horizons abd earn</p>
               <p className="text-white text-[18px] font-mono">exciting rewards!</p>
-              <a href=""><img className="h-[40px] w-[40px] mt-[20px] hover:scale-125 transition hover:duration-200 " src="./right_white.png" alt="arrow"></img></a>
+              <a href="http://localhost:4000"><img className="h-[40px] w-[40px] mt-[20px] hover:scale-125 transition hover:duration-200 " src="./right_white.png" alt="arrow"></img></a>
             </div>
           </div>
 
