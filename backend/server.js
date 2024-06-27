@@ -253,6 +253,11 @@ app.get('/api/recommendations', async (req, res) => {
                         Location: data.Location,
                         Description: data.Description,
                         Category: data.Category,
+                        BestSeason: data.BestSeason,
+                        Timings: data.Timings,
+                        Reviews: data.Reviews,
+                        Rating: data.Rating,
+                        Price: data.Price,
                         url: data.url
                     });
                 }
