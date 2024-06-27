@@ -9,11 +9,13 @@ const username = '00'; //getNewUsername();
 
 // Function to fetch recommended locations
 function fetchRecommendedLocations() {
+
     return fetch(`http://localhost:3000/api/recommendations?username=${username}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+           
             return response.json();
         });
 }
@@ -28,9 +30,10 @@ Promise.all([
         return response.json();
     }),
     fetchUserLocations(),
-    fetchRecommendedLocations()
+    fetchRecommendedLocations(),
 ])
 .then(([allLocations, userLocations, recommendedLocations]) => {
+    console.log("rec",recommendedLocations)
     displayLocations(
         recommendedLocations,
         userLocations.likedLocations,
@@ -40,8 +43,9 @@ Promise.all([
     );
 })
 .catch(error => {
-    console.error('Error:', error);
+    console.error('Error in:', error);
 });
+
 
 
 // Function to fetch and display user locations
@@ -116,19 +120,32 @@ function displayLocations(data, likedLocations, addedLocations, visitedLocations
         const isVisited = Array.isArray(visitedLocations) && visitedLocations.includes(location.Name);
 
         card.innerHTML = `
-            <h2>${location.Name}</h2>
-            <p><strong>Location:</strong> ${location.Location}</p>
-            <p><strong>Description:</strong> ${location.Description}</p>
-            <p><strong>Category:</strong> ${location.Category}</p>
-            <button class="already-visited card-buttons ${isVisited ? 'visited' : ''}" data-location="${location.Name}">
-                Already Visited
-            </button>
-            <button class="like card-buttons ${isLiked ? 'liked' : ''}" data-location="${location.Name}">
-                <i class="fas fa-thumbs-up"></i>
-            </button>
-            <button class="add card-buttons ${isAdded ? 'added' : ''}" data-location="${location.Name}">
-                <i class="fas fa-plus"></i>
-            </button>
+            <a href="/info.html?location=${location.Name}&url=${location.url}&loc=${location.Location}&desc=${location.Description}&catergery=${location.Category}&bestseason=${location.BestSeason}&timing=${location.Timimgs}&rating=${location.Rating}&reviews=${location.Reviews}&price=${location.Price}" class="card-image">
+                <img class="loc_img" src="${location.url}" alt="Error Loading Image">
+            </a>
+
+            <div class="card-content">
+                <div class="card-titles">
+                    <h2>${location.Name}</h2>
+                    <p>${location.Location}</p>
+                </div>
+
+                <div class="card-buttons">
+                    <!-- 
+                    <button class="already-visited card-buttons ${isVisited ? 'visited' : ''}" data-location="${location.Name}">
+                        Already Visited
+                    </button>
+                    -->
+
+                    <button class="like card-buttons ${isLiked ? 'liked' : ''}" data-location="${location.Name}">
+                        <i class="fas fa-thumbs-up"></i>
+                    </button>
+
+                    <button class="add card-buttons ${isAdded ? 'added' : ''}" data-location="${location.Name}">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
         `;
 
         container.appendChild(card);
@@ -174,6 +191,7 @@ function getLocation() {
 
 window.onload = function() {
     getLocation();
+    modelRun();
 }
 
 document.getElementById('searchInput').addEventListener('input', function(event) {
@@ -213,11 +231,19 @@ function fetchAllLocations() {
         });
 }
 
+
+
 function hideLocationContainer() {
     const container = document.getElementById('location-container');
     container.style.display = 'none';
     const subtitle = document.querySelector('.Subtitle1');
     subtitle.style.display = 'none';
+    const subtitle0 = document.querySelector('.Subtitle0');
+    subtitle0.style.display = 'none';
+    const suggcontainer = document.getElementById('suggested-location-container');
+    suggcontainer.style.display = 'none';
+    
+    
 }
 
 function showLocationContainer() {
@@ -225,6 +251,11 @@ function showLocationContainer() {
     container.style.display = 'grid';
     const subtitle = document.querySelector('.Subtitle1');
     subtitle.style.display = 'block';
+    const subtitle0 = document.querySelector('.Subtitle0');
+    subtitle0.style.display = 'block';
+    const suggcontainer = document.getElementById('suggested-location-container');
+    suggcontainer.style.display = 'grid';
+    
 }
 
 function filterLocations(locations, query) {
@@ -345,3 +376,36 @@ function visitButtonClickHandler() {
     const location = this.getAttribute('data-location');
     visitLocation(location, this);
 }
+
+
+async function modelRun() {
+
+        try {
+            let response = await fetch('http://localhost:4000/rundynamicmodel', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ /* optional data to send */ })
+            });
+            if (response.ok) {
+                let result = await response.json();
+                console.log('Result:', result);
+                // Process the result as needed
+            } else {
+                console.error('Failed to run model:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error running model:', error);
+        }
+
+}
+
+
+
+//<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+

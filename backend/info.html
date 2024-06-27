@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+
+
+
+<body>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const locationName = urlParams.get('location');
+            const locationDesc = urlParams.get('desc');
+
+
+            if (location) {
+                document.getElementById('locationName').textContent = decodeURIComponent(locationName);
+                document.getElementById('locationDesc').textContent = decodeURIComponent(locationDesc);
+                
+            } else {
+                document.getElementById('locationName').textContent = 'No location specified';
+                document.getElementById('locationDesc').textContent = 'No location specified';
+            }
+        });
+      
+
+
+    </script>
+    <h1>Info Page</h1>
+    <h2 class="Subtitle0">Recommended Places<span id="SuggestedCity"></span></h2>
+
+    <div id="suggested-location-container">
+        <h1 id="locationName"></h1>
+        <h1 id="locationDesc"></h1>
+        <h1 id="locationRating"></h1>
+        <h1 id="locationReview"></h1>
+    </div>
+</body>
+
+</html>

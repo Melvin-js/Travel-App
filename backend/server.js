@@ -1,3 +1,6 @@
+//PALM_API_KEY='AIzaSyA0_ZZHUDaPanKSeU1w7sWJAJLKdvLJDRw'
+//WEATHER_API_KEY='HYA7MBM9MQT687ZDAXUZ27G9A'
+
 const express = require('express');
 const path = require('path');
 const csv = require('csv-parser');
@@ -250,6 +253,7 @@ app.get('/api/recommendations', async (req, res) => {
                         Location: data.Location,
                         Description: data.Description,
                         Category: data.Category,
+                        url: data.url
                     });
                 }
             })
@@ -268,6 +272,69 @@ app.get('/api/recommendations', async (req, res) => {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let source, destination, start_date, end_date;
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + 'index.html');
+});
+
+app.post('/iternary', async (req, res) => {
+    source = req.body.source;
+    destination = req.body.destination;
+    start_date = req.body.date;
+    end_date = req.body.return;
+
+    let no_of_day = moment(end_date).diff(moment(start_date), 'days');
+
+    if (no_of_day < 0) {
+        res.status(400).json({ error: "Return date should be greater than the Travel date (Start date)." });
+        return;
+    }
+
+    try {
+        // Call your weather API here using axios
+        let weather_data = await getWeatherData(destination, start_date, end_date);
+
+        // Generate itinerary (assuming bard.generate_itinerary is a function you define)
+        let plan = generateItinerary(source, destination, start_date, end_date, no_of_day);
+
+        // Send the response with weather_data and plan
+        res.json({ weather_data, plan });
+    } catch (error) {
+        console.error('Error:', error.message);
+        res.status(500).json({ error: "Error processing request. Please try again later." });
+    }
+});
+
+// Example function to get weather data (replace with your actual API call)
+async function getWeatherData(destination, start_date, end_date) {
+    // Example API call using axios (replace with your actual API and endpoint)
+    const apiKey = 'HYA7MBM9MQT687ZDAXUZ27G9A';
+    const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${destination}&dt=${start_date}&end_dt=${end_date}`;
+    const response = await axios.get(apiUrl);
+    return response.data;
+}
+
+// Example function to generate itinerary (replace with your logic)
+function generateItinerary(source, destination, start_date, end_date, no_of_day) {
+    // Replace with your logic to generate itinerary
+    return `Itinerary for ${source} to ${destination} from ${start_date} to ${end_date} (${no_of_day} days)`;
+}
 
 
 

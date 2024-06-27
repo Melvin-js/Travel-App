@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
+<body>  
     <h1>Discover new places in Kerala</h1>
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Search for locations...">
     </div>
-
-    <h2 class="Subtitle1">Recommended Places<span id="SuggestedCity"></span></h2>
+    <button class="itbtn" id="goToPort5000">IternaryGenerator</button>
+    <h2 class="Subtitle0">Recommended Places<span id="SuggestedCity"></span></h2>
     
     <div id="suggested-location-container"></div>
 
@@ -26,6 +26,14 @@
     <div id="other-location-container"></div>
     
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var button = document.getElementById('goToPort5000');
+            button.addEventListener('click', function() {
+                window.open('http://localhost:5000', '_blank');
+            });
+        });
+    </script>
     
 </body>
 </html>
